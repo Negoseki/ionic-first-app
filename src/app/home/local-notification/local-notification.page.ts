@@ -32,9 +32,10 @@ export class LocalNotificationPage implements OnInit {
   }
 
   async scheule(): Promise<void> {
+    await LocalNotifications.requestPermissions();
     const platform = await Capacitor.getPlatform();
     if (platform !== 'android') {
-      return; 
+      return;
     }
 
     await LocalNotifications.createChannel({
@@ -49,7 +50,7 @@ export class LocalNotificationPage implements OnInit {
           id: 1,
           title: 'Native Plugins App',
           body: 'Checking local notification',
-          schedule: { at: new Date(Date.now() + 5000) },
+          schedule: { at: new Date(Date.now() + 1000) },
           sound: 'sound.wav',
         },
       ],
