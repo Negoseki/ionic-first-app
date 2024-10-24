@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/" text="Back"> </ion-back-button>
@@ -7,12 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-list>
-    @for (contact of contacts; track contact.contactId) {
-      <ion-item-sliding>
+<ion-content [scrollY]="false">
+  <cdk-virtual-scroll-viewport
+    class="ion-content-scroll-host"
+    itemSize="47"
+    minBufferPx="900"
+    maxBufferPx="1350"
+  >
+    <ion-list>
+      <ion-item-sliding *cdkVirtualFor="let contact of contacts">
         <ion-item>
-          {{ contact.name?.display }}
+          {{ contact.name?.display ?? "Not Found" }}
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option (click)="callContactNumber(contact)">
@@ -20,6 +25,9 @@
           ></ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    }
-  </ion-list>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="infiniteScroll($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </cdk-virtual-scroll-viewport>
 </ion-content>
