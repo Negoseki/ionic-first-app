@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Back"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Network & Toast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-col class="ion-margin ion-padding-top">
+    {{status?.connected ? 'Connected': 'Offline'}}
+  </ion-col>
+</ion-content>

@@ -1,0 +1,18 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>camera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-col>
+    <ion-button expand="block" (click)="takePhoto()"> Take Photo</ion-button>
+
+    @if (photo) {
+      <ion-button expand="block" (click)="sharePhoto()">
+        Share Photo</ion-button
+      >
+      <img [src]="photo.webPath" />
+    }
+  </ion-col>
+</ion-content>

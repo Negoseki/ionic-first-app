@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/" text="Back"> </ion-back-button>
+    </ion-buttons>
+    <ion-title>Contacts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    @for (contact of contacts; track contact.contactId) {
+      <ion-item-sliding>
+        <ion-item>
+          {{ contact.name?.display }}
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="callContactNumber(contact)">
+            Call <ion-icon name="call"></ion-icon
+          ></ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    }
+  </ion-list>
+</ion-content>
